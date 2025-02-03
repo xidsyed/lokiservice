@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".LocatorServiceApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|mnc|colorMode|density|fontScale|fontWeightAdjustment|keyboard|layoutDirection|locale|mcc|navigation|smallestScreenSize|touchscreen|uiMode"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+        TODO :
+            This doesn't work. both of them give a classNotFoundException on build.
+            - tools:node="remove" is a temporary work around.
+            - For now initializing these dependencies to be used by the loki library, directly
+            in the [LocatorServiceApp.kt] class
+            - There doesn't seem to be a problem with the version or dependency like found online.
+            - This androidx.startup is a transitive dependency of several internal library, and
+            regardless of the version number tested this error persists
+            - the bytecode / dexcode cant find this class at runtime. THIS needs to be further
+            investigated
+        -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="remove"
+            >
+            <meta-data
+                android:name="com.org.example.project.loki.permission.internal.activity.ActivityProviderInitializer"
+                android:value="androidx.startup"
+                 />
+            <meta-data
+                android:name="com.org.example.project.loki.permission.internal.context.ContextProviderInitializer"
+                android:value="androidx.startup"
+                />
+        </provider>
+
+    </application>
+
+</manifest>
