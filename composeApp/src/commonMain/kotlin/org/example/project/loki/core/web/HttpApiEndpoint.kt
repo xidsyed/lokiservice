@@ -9,9 +9,9 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.statement.HttpResponse
 import io.ktor.serialization.kotlinx.json.json
-import org.example.project.Logger as LocalLogger
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonBuilder
+import org.example.project.Logger as LocalLogger
 
 /**
  * Defines an HTTP API endpoint.

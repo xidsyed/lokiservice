@@ -18,4 +18,4 @@ captures
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # Custom
-google_api.properties
+test_api_keys.properties

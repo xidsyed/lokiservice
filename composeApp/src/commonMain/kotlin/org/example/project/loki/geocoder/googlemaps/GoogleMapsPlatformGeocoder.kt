@@ -2,11 +2,11 @@ package org.example.project.loki.geocoder.googlemaps
 
 import io.ktor.client.HttpClient
 import kotlinx.serialization.json.Json
+import org.example.project.loki.core.web.HttpApiEndpoint
 import org.example.project.loki.geocoder.PlatformGeocoder
 import org.example.project.loki.geocoder.googlemaps.parameter.GoogleMapsParameters
 import org.example.project.loki.geocoder.googlemaps.parameter.GoogleMapsParametersBuilder
 import org.example.project.loki.geocoder.googlemaps.parameter.googleMapsParameters
-import org.example.project.loki.core.web.HttpApiEndpoint
 import org.example.project.loki.geocoder.web.HttpApiPlatformGeocoder
 
 /**

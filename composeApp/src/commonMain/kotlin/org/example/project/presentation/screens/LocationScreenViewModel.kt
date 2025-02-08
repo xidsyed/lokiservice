@@ -1,17 +1,18 @@
-package org.example.project
+package org.example.project.presentation.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.app.GoogleApiConfig
+import com.example.app.TestApiKeyConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.example.project.Logger
 import org.example.project.loki.autocomplete.Autocomplete
 import org.example.project.loki.autocomplete.AutocompleteOptions
 import org.example.project.loki.autocomplete.AutocompletePlace
@@ -28,7 +29,7 @@ import org.example.project.loki.geolocation.GeolocatorResult
 import org.example.project.loki.geolocation.LocationRequest
 import org.example.project.loki.geolocation.TrackingStatus
 
-class LokiViewModel(
+class LocationScreenViewModel(
     private val geolocator: Geolocator,
     private val geocoder: Geocoder,
     private val autocomplete: Autocomplete<AutocompletePlace>
@@ -110,14 +111,14 @@ class LokiViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                LokiViewModel(
+                LocationScreenViewModel(
                     geolocator = Geolocator(),
                     geocoder = Geocoder.googleMaps(
-                        apiKey = GoogleApiConfig.googleApiKey,
+                        apiKey = TestApiKeyConfig.googleApiKey,
                         enableLogging = true
                     ),
                     autocomplete = Autocomplete.googleMaps(
-                        apiKey = GoogleApiConfig.googleApiKey,
+                        apiKey = TestApiKeyConfig.googleApiKey,
                         options = AutocompleteOptions(minimumQuery = 4),
                         enableLogging = true,
                     )

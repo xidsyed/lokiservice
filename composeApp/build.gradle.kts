@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.androidx.fragment)
             implementation(libs.androidx.startup)
             api(libs.ktor.client.android)
+            implementation(libs.razorpay.checkout)
         }
 
         commonTest.dependencies {
@@ -63,7 +64,9 @@ kotlin {
             api(libs.ktor.client.core)
             api(libs.ktor.client.contentNegotiation)
             api(libs.ktor.client.logging)
+            api(libs.ktor.client.auth)
             api(libs.ktor.serialization.json)
+            implementation(libs.navigation.compose)
         }
 
         iosMain.dependencies {
@@ -96,6 +99,11 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
         }
     }
     compileOptions {
@@ -111,18 +119,22 @@ dependencies {
 
 
 val localProperties = Properties()
-val localPropertiesFile = rootProject.file("google_api.properties")
+val localPropertiesFile = rootProject.file("test_api_keys.properties")
 localProperties.load(localPropertiesFile.inputStream())
 
 val googleApiKey = localProperties.getProperty("loki_test_google_api_key") ?: ""
+val rzrpayTestKeyId = localProperties.getProperty("rzrpay_test_key_id") ?: ""
+val rzrpayTestKeySecret = localProperties.getProperty("rzrpay_test_key_secret") ?: ""
 
 buildkonfig {
     packageName = "com.example.app"
-    objectName = "GoogleApiConfig"
+    objectName = "TestApiKeyConfig"
     // exposeObjectWithName = "YourAwesomePublicConfig"
 
     defaultConfigs {
         buildConfigField(STRING, "googleApiKey", googleApiKey)
+        buildConfigField(STRING, "rzrpayTestKeyId", rzrpayTestKeyId)
+        buildConfigField(STRING, "rzrpayTestKeySecret", rzrpayTestKeySecret)
     }
 }
 

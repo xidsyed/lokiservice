@@ -3,7 +3,7 @@ package org.example.project.loki.geocoder.googlemaps
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import org.example.project.loki.core.Coordinates
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Place
 import org.example.project.loki.geocoder.googlemaps.google.internal.GeocodeResponse
 import org.example.project.loki.geocoder.googlemaps.google.internal.resultsOrThrow
@@ -40,7 +40,7 @@ public class GoogleMapsReverseEndpoint(
         return GoogleMapsPlatformGeocoder.reverseUrl(latitude, longitude, apiKey, parameters)
     }
 
-    @OptIn(InternalCompassApi::class)
+    @OptIn(InternalLokiApi::class)
     override suspend fun mapResponse(response: HttpResponse): List<Place> {
         val result = response.body<GeocodeResponse>().resultsOrThrow()
         return result.toPlaces()

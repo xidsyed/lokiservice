@@ -23,8 +23,8 @@ public class GoogleMapsParameters(
 ) : QueryParameters {
 
     override val parameters: Map<String, String> = parametersOf(
-        "location_type" to locationType,
-    )
+            "location_type" to locationType,
+        )
 }
 
 /**

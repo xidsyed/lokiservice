@@ -2,21 +2,22 @@ package org.example.project.loki.permission.internal.context
 
 import android.annotation.SuppressLint
 import android.content.Context
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
+import org.example.project.loki.permission.internal.activity.ActivityProvider
 
 
 /**
  * Class for providing the application context.
  */
-@InternalCompassApi
-public class ContextProvider(public val context: Context) {
+@InternalLokiApi
+internal class ContextProvider(public val context: Context) {
 
-    @InternalCompassApi
     public companion object {
 
         @SuppressLint("StaticFieldLeak")
         private var instance: ContextProvider? = null
 
+        @InternalLokiApi
         public fun create(context: Context): ContextProvider {
             if (instance == null) {
                 instance = ContextProvider(context)
@@ -27,5 +28,16 @@ public class ContextProvider(public val context: Context) {
 
         public fun getInstance(): ContextProvider = instance
             ?: throw IllegalStateException("ContextProvider has not been initialized")
+    }
+}
+
+/**
+ * This is a temporary work around. get the startup initializer classes working with the manifest.
+ * */
+object LokiService {
+    @OptIn(InternalLokiApi::class)
+    fun initialize(context: Context) {
+        ContextProvider.create(context)
+        ActivityProvider.create(context)
     }
 }

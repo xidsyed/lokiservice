@@ -3,7 +3,7 @@ package org.example.project.loki.geocoder.googlemaps.google.internal
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.example.project.loki.core.Coordinates
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Place
 import org.example.project.loki.geocoder.exception.GeocodeException
 import org.example.project.loki.geocoder.googlemaps.google.internal.AddressComponentType.AdministrativeAreaLevel1
@@ -16,7 +16,7 @@ import org.example.project.loki.geocoder.googlemaps.google.internal.AddressCompo
 import org.example.project.loki.geocoder.googlemaps.google.internal.AddressComponentType.PostalCode
 import org.example.project.loki.geocoder.googlemaps.google.internal.AddressComponentType.Thoroughfare
 
-@InternalCompassApi
+@InternalLokiApi
 @Serializable
 public data class GeocodeResponse(
     @SerialName("results")
@@ -29,7 +29,7 @@ public data class GeocodeResponse(
     public val errorMessage: String? = null,
 )
 
-@InternalCompassApi
+@InternalLokiApi
 public fun GeocodeResponse.resultsOrThrow(): List<ResultResponse> = when (status) {
     StatusResponse.Ok,
     StatusResponse.ZeroResults,
@@ -38,7 +38,7 @@ public fun GeocodeResponse.resultsOrThrow(): List<ResultResponse> = when (status
     else -> throw GeocodeException("[$status] $errorMessage")
 }
 
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 internal fun List<ResultResponse>.toCoordinates(): List<Coordinates> {
     return mapNotNull { response ->
         val location = response.geometry?.location ?: return@mapNotNull null
@@ -46,7 +46,7 @@ internal fun List<ResultResponse>.toCoordinates(): List<Coordinates> {
     }
 }
 
-@InternalCompassApi
+@InternalLokiApi
 public fun List<ResultResponse>.toPlaces(): List<Place> {
     return mapNotNull { response ->
         val components = response.addressComponents

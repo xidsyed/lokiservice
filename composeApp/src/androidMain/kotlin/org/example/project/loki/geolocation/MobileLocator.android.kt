@@ -3,7 +3,7 @@ package org.example.project.loki.geolocation
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapNotNull
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Location
 import org.example.project.loki.core.Priority
 import org.example.project.loki.geolocation.internal.LocationManager
@@ -18,7 +18,7 @@ import org.example.project.loki.permission.throwOnError
 /**
  * Creates a new [MobileLocator] instance for Android.
  */
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 internal actual fun createLocator(
     permissionController: LocationPermissionController,
 ): MobileLocator {

@@ -3,7 +3,7 @@ package org.example.project.loki.geocoder.web
 import io.ktor.client.HttpClient
 import io.ktor.client.statement.HttpResponse
 import org.example.project.loki.core.Coordinates
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Place
 import org.example.project.loki.core.exception.NotSupportedException
 import org.example.project.loki.core.web.HttpApiEndpoint
@@ -27,7 +27,7 @@ public class ReverseHttpApiPlatformGeocoder(
         throw NotSupportedException()
     }
 
-    @OptIn(InternalCompassApi::class)
+    @OptIn(InternalLokiApi::class)
     override suspend fun reverse(latitude: Double, longitude: Double): List<Place> {
         val url = endpoint.url(Coordinates(latitude, longitude))
         return client.makeRequest(url, endpoint::mapResponse)

@@ -1,9 +1,6 @@
 package org.example.project.loki.permission.internal.activity
 
-import android.annotation.SuppressLint
-import android.content.Context
 import androidx.startup.Initializer
-import org.example.project.loki.core.InternalCompassApi
 
 /**
  * Initializes the [ActivityProvider] during application startup.

@@ -1,5 +1,6 @@
 package org.example.project.loki.core.web.parameter
 
+
 /**
  * Denotes a query parameter value that is a list of values.
  *

@@ -6,14 +6,14 @@ import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Priority
 import org.example.project.loki.permission.internal.activity.ActivityProvider
 import org.example.project.loki.permission.internal.context.ContextProvider
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 internal actual fun createPermissionController(): LocationPermissionController {
     return AndroidLocationPermissionController(
         context = ContextProvider.getInstance().context,
@@ -21,7 +21,7 @@ internal actual fun createPermissionController(): LocationPermissionController {
     )
 }
 
-@InternalCompassApi
+@InternalLokiApi
 internal class AndroidLocationPermissionController(
     private val context: Context,
     private val activityProvider: ActivityProvider,

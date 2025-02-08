@@ -4,9 +4,9 @@ import io.ktor.client.HttpClient
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
+import org.example.project.loki.core.web.HttpApiEndpoint
 import org.example.project.loki.geocoder.web.ForwardEndpoint
 import org.example.project.loki.geocoder.web.ForwardHttpApiPlatformGeocoder
-import org.example.project.loki.core.web.HttpApiEndpoint
 import org.example.project.loki.geocoder.web.HttpApiPlatformGeocoder
 import org.example.project.loki.geocoder.web.ReverseEndpoint
 import org.example.project.loki.geocoder.web.ReverseHttpApiPlatformGeocoder

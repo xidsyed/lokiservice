@@ -9,4 +9,4 @@ package org.example.project.loki.core
     ],
 )
 @RequiresOptIn(level = RequiresOptIn.Level.ERROR)
-public annotation class InternalCompassApi
+public annotation class InternalLokiApi

@@ -3,18 +3,13 @@
 package org.example.project.loki.autocomplete.googlemaps.web
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import kotlinx.serialization.json.Json
 import org.example.project.loki.autocomplete.AutocompletePlace
 import org.example.project.loki.autocomplete.AutocompleteService
 import org.example.project.loki.autocomplete.googlemaps.GoogleMapsAutocompleteEndpoint
-import org.example.project.loki.core.InternalCompassApi
-import org.example.project.loki.core.Place
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.web.HttpApiEndpoint
 import org.example.project.loki.core.web.makeRequest
-import org.example.project.loki.geocoder.googlemaps.google.internal.GeocodeResponse
-import org.example.project.loki.geocoder.googlemaps.google.internal.resultsOrThrow
-import org.example.project.loki.geocoder.googlemaps.google.internal.toPlaces
 
 /**
  * Creates a new [AutocompleteService] that uses the Google Maps Autocomplete API to provide
@@ -26,7 +21,7 @@ import org.example.project.loki.geocoder.googlemaps.google.internal.toPlaces
  * @param client The HTTP client to use when making requests.
  * @return A new [AutocompleteService] that uses the Google Maps Geocoding API.
  */
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 public fun GoogleMapsAutocompleteService(
     apiKey: String,
     json: Json = HttpApiEndpoint.json(),

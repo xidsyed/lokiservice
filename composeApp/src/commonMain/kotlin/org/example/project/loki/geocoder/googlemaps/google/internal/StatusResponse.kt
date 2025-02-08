@@ -1,7 +1,7 @@
 package org.example.project.loki.geocoder.googlemaps.google.internal
 
 import kotlinx.serialization.SerialName
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 
 /**
  * The possible status responses from the Google Maps Geocoding API.
@@ -9,7 +9,7 @@ import org.example.project.loki.core.InternalCompassApi
  * @see [Status and Error Codes](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding#reverse-response)
  */
 @Suppress("unused")
-@InternalCompassApi
+@InternalLokiApi
 public enum class StatusResponse {
     @SerialName("OK")
     Ok,

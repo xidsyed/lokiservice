@@ -1,5 +1,6 @@
 package org.example.project.loki.core.web.parameter
 
+
 /**
  * Denotes a class that can build a [QueryParameters] instance of type [T].
  *

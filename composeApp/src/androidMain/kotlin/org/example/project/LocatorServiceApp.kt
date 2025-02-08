@@ -1,15 +1,15 @@
 package org.example.project
 
 import android.app.Application
-import org.example.project.loki.core.InternalCompassApi
-import org.example.project.loki.permission.internal.activity.ActivityProvider
-import org.example.project.loki.permission.internal.context.ContextProvider
+import org.example.project.loki.core.InternalLokiApi
+import org.example.project.loki.permission.internal.context.LokiService
+import org.example.project.payments.checkout.internal.context.PaymentService
 
 class LocatorServiceApp : Application() {
-    @InternalCompassApi
+    @InternalLokiApi
     override fun onCreate() {
         super.onCreate()
-        ActivityProvider.create(context = applicationContext)
-        ContextProvider.create(context = applicationContext)
+        LokiService.initialize(context = applicationContext)
+        PaymentService.initialize(context = applicationContext)
     }
 }

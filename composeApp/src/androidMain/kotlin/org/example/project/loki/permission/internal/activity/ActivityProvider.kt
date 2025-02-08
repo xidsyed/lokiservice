@@ -5,15 +5,14 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.activity.ComponentActivity
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.permission.internal.PermissionRequester
 import java.lang.ref.WeakReference
 
-@InternalCompassApi
+@InternalLokiApi
 class ActivityProvider(
     private val context: Context,
 ) {
-
     private var requester: WeakReference<PermissionRequester>? = null
 
     val permissionRequester: PermissionRequester
@@ -42,7 +41,6 @@ class ActivityProvider(
             if (instance == null) {
                 instance = ActivityProvider(context)
             }
-
             return instance!!
         }
 

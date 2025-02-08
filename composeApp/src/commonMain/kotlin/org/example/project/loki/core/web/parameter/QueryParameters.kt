@@ -37,7 +37,8 @@ public interface QueryParameters {
 @Suppress("UnusedReceiverParameter")
 public fun QueryParameters.parametersOf(
     vararg parameters: Pair<String, Any?>,
-): Map<String, String> = internalParametersOf(*parameters)
+): Map<String, String> =
+    internalParametersOf(*parameters)
 
 internal fun internalParametersOf(
     vararg parameters: Pair<String, Any?>,

@@ -5,7 +5,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.encodeURLParameter
 import org.example.project.loki.core.Coordinates
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.core.Place
 import org.example.project.loki.core.exception.NotSupportedException
 import org.example.project.loki.core.web.HttpApiEndpoint
@@ -18,7 +18,7 @@ import org.example.project.loki.core.web.makeRequest
  * @property endpoint The endpoint to use for forward geocoding.
  * @property client The [HttpClient] to use for making requests.
  */
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 public class ForwardHttpApiPlatformGeocoder(
     private val endpoint: ForwardEndpoint,
     private val client: HttpClient,

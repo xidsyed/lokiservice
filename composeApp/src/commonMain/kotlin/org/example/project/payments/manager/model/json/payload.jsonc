@@ -1,0 +1,95 @@
+// based on : https://razorpay.com/docs/payments/payment-gateway/android-integration/standard/build-integration/#other-checkout-form-fields
+
+{
+  // Mandatory fields
+  "key": "your_api_key_here", // API Key ID generated from the Razorpay Dashboard.
+  "amount": 29900, // Payment amount in the smallest currency sub-unit. For ₹299.00, use 29900.
+  "currency": "INR", // Currency code in which the payment will be made.
+  "name": "Acme Corp", // Your Business/Enterprise name shown on the Checkout form.
+  "order_id": "order_DBJOWzybf0sJbb", // Order ID generated via the Orders API.
+
+  // Optional fields
+  "description": "Purchase description goes here", // Description of the purchase item; must start with an alphanumeric character.
+  "image": "https://example.com/logo.png", // URL or base64 string for the business logo displayed on the Checkout form.
+
+  // Prefill details to auto-populate customer information on the Checkout form.
+  "prefill": {
+    "name": "Gaurav Kumar", // Cardholder's name (if making card payments).
+    "email": "gaurav.kumar@example.com", // Customer's email address.
+    "contact": "+919977665544", // Customer's phone number in the format +{country code}{phone number}.
+    // Pre-selected payment method (optional); requires contact and email to be prefilled.
+    "method": "card" //  Options include: card, netbanking, wallet, emi, upi.
+  },
+
+
+  // Custom notes (max of 15 key-value pairs, each up to 256 characters).
+  "notes": {
+    "note_key1": "note_value1",
+    "note_key2": "note_value2"
+  },
+
+  // Thematic options to customize the appearance of the Checkout form.
+  "theme": {
+    "hide_topbar": false, // Set to true to hide the top bar showing payment method & phone number.
+    "color": "#F37254", // Brand color (HEX) to style texts, icons, and the CTA button.
+    "backdrop_color": "#000000" // HEX code to change the Checkout backdrop color.
+  },
+
+  // Modal options for the Checkout behavior.
+  "modal": {
+    "backdropclose": false, // If true, clicking outside the Checkout modal closes it.
+    "escape": true, // If true, pressing the escape key will close the Checkout.
+    "handleback": true, // If true, Checkout simulates a browser back press.
+    "confirm_close": false, // If true, a confirmation dialog will appear when closing Checkout.
+    "animation": true, // If true, an animation is shown before loading the Checkout.
+    "ondismiss": " " //function Used to track the status of Checkout. You can pass a modal object with ondismiss: function()\{\} as options. This function is called when the modal is closed by the user.
+  },
+
+  // Subscription and recurring payment options.
+  "subscription_id": "sub_DBJOWzybf0sJbb", // For recurring payments using Razorpay Checkout.
+  "subscription_card_change": false, // Set to true to allow customers to change their subscription card.
+  "recurring": false, // Set to true if accepting recurring (charge-at-will) payments.
+
+  // Callback settings for after payment completion.
+  "callback_url": "https://example.com/payment_callback", // URL to which the customer is redirected on successful payment.
+  "redirect": false, // Determines if the customer is redirected on payment failure (requires callback_url).
+
+  // Customer identification and saving preferences.
+  "customer_id": "cust_DBJOWzybf0sJbb", // Unique identifier for the customer.
+  "remember_customer": false, // Set to true to allow saving of cards (configurable via the Dashboard).
+
+  // Timeout for the Checkout session in seconds.
+  "timeout": 300,
+
+  // Fields to mark as read-only so the customer cannot edit them.
+  "readonly": {
+    "contact": false, // true to prevent editing of the contact field.
+    "email": false,   // true to prevent editing of the email field.
+    "name": false     // true to prevent editing of the name field.
+  },
+
+  // Options to hide the contact details from the customer.
+  "hidden": {
+    "contact": false, // true to hide the contact field.
+    "email": false    // true to hide the email field.
+  },
+
+  // Auto-read OTP settings for cards and net banking pages (Android SDK v1.5.9+).
+  "send_sms_hash": false,
+
+  // Rotation setting for the payment page (Android SDK v1.6.4+).
+  "allow_rotation": false,
+
+  // Payment retry configuration.
+  "retry": {
+    "enabled": true, // Allows the customer to retry the payment.
+    "max_count": 4   // Maximum number of retry attempts (note: applicable only in Android and iOS SDKs).
+  },
+
+  // Configuration settings for the Checkout display language.
+  "config": {
+    "display": {
+      "language": "en" // Supported values: en, ben, hi, mar, guj, tam, tel.
+    }
+  }
+}

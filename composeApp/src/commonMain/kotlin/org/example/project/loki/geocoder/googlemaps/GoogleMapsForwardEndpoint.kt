@@ -10,7 +10,7 @@ import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.encodeURLQueryComponent
 import org.example.project.loki.core.Coordinates
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 import org.example.project.loki.geocoder.web.ForwardEndpoint
 
 /**
@@ -40,7 +40,7 @@ public class GoogleMapsForwardEndpoint(
         return GoogleMapsPlatformGeocoder.forwardUrl(encodedQuery, apiKey, parameters)
     }
 
-    @OptIn(InternalCompassApi::class)
+    @OptIn(InternalLokiApi::class)
     override suspend fun mapResponse(response: HttpResponse): List<Coordinates> {
         val result = response.body<GeocodeResponse>().resultsOrThrow()
         return result.toCoordinates()

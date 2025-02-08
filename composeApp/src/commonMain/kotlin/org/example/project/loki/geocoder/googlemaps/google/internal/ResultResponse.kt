@@ -2,9 +2,9 @@ package org.example.project.loki.geocoder.googlemaps.google.internal
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.example.project.loki.core.InternalCompassApi
+import org.example.project.loki.core.InternalLokiApi
 
-@InternalCompassApi
+@InternalLokiApi
 @Serializable
 public data class ResultResponse(
     @SerialName("address_components")
@@ -17,7 +17,7 @@ public data class ResultResponse(
     public val geometry: GeometryResponse? = null,
 )
 
-@InternalCompassApi
+@InternalLokiApi
 @Serializable
 public data class AddressComponentResponse(
     @SerialName("long_name")
@@ -42,7 +42,7 @@ internal enum class AddressComponentType(val value: String) {
     PostalCode("postal_code"),
 }
 
-@OptIn(InternalCompassApi::class)
+@OptIn(InternalLokiApi::class)
 internal fun List<AddressComponentResponse>.find(
     component: AddressComponentType,
 ): AddressComponentResponse? {
