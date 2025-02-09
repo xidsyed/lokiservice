@@ -38,7 +38,6 @@ class TestRazorpayPaymentService private constructor(
 
     override suspend fun createOrder(orderRequest: OrderRequest): Entity {
         val json = Json.encodeToString(orderRequest)
-        Logger.d("TAG", "Creating order with request: $orderRequest\nJSON: $json")
 
         return client.post("$baseUrl/orders") {
             contentType(ContentType.Application.Json)
@@ -59,12 +58,14 @@ class TestRazorpayPaymentService private constructor(
         private var instance: TestRazorpayPaymentService? = null
 
         fun getInstance(
-            enableLogging: Boolean = true
+            enableLogging: Boolean = true,
+            testKeyId: String,
+            testKeySecret: String
         ) = instance ?: TestRazorpayPaymentService(
             client = DefaultHttpClient(
                 enableLogging,
-                username = TestApiKeyConfig.rzrpayTestKeyId,
-                password = TestApiKeyConfig.rzrpayTestKeySecret
+                username = testKeyId,
+                password = testKeySecret
             )
 
         ).also {

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.app.TestApiKeyConfig
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +18,8 @@ import kotlinx.coroutines.launch
 import org.example.project.Logger
 import org.example.project.payments.checkout.model.CheckoutPayload
 import org.example.project.payments.manager.PaymentManager
-import org.example.project.payments.manager.createTest
 import org.example.project.payments.manager.model.PaymentStatus
+import org.example.project.payments.manager.razorpayTest
 
 
 data class PaymentScreenState(
@@ -43,7 +44,11 @@ class PaymentScreenViewModel(
     private val _uiEventsChannel = Channel<String>(onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val uiEventsFlow = _uiEventsChannel.receiveAsFlow().conflate()
 
-    val paymentManager = PaymentManager.createTest(viewModelScope)
+    val paymentManager = PaymentManager.razorpayTest(
+        scope = viewModelScope,
+        testKeyId = TestApiKeyConfig.rzrpayTestKeyId,
+        testKeySecret = TestApiKeyConfig.rzrpayTestKeySecret
+    )
 
     init {
         viewModelScope.launch {

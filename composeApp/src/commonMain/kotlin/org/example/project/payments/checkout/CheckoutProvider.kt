@@ -8,5 +8,6 @@ interface CheckoutProvider {
     fun clearUserData()
 }
 
-expect fun CheckoutProvider() : CheckoutProvider
+@Suppress("FunctionName")
+expect fun RazorpayCheckoutProvider() : CheckoutProvider
 
