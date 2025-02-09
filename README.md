@@ -12,3 +12,23 @@ rzrpay_test_key_id=<API KEY HERE>
 rzrpay_test_key_secret=<API KEY HERE>
 ```
 [test key](https://www.protectedtext.com/lokiapikey)
+
+---
+
+#### Payment Todo: 
+- [ ] Confirmation Implementation
+- [ ] Refund tracking on confirmation failure
+- [ ] mock, testing, staging and production entrypoints.
+- [ ] Getting Started README
+- [ ] Separate into standalone library, and test in-app
+
+#### Location TODO : 
+- [ ] README
+- [ ] testing and production entry-points
+- [ ] Separate into standalone library, and test in-app
+
+#### Notification TODO :
+- [ ] KMM Notification Service
+- [ ] README
+- [ ] testing and production entry-points
+- [ ] Separate into standalone library, and test in-app
